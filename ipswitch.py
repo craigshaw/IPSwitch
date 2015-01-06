@@ -46,8 +46,9 @@ class IPSwitch(Daemon):
         config.logger.debug('Got current IP address: {0}'.format(new_ip))
 
         if new_ip != 'Unknown' and new_ip != self.current_ip:
-            config.logger.info('IP address changed from {0} to {1}'.format(self.current_ip, new_ip))
-            config.notifier.send_notification('IP address changed from {0} to {1}'.format(self.current_ip, new_ip), 'IP Update')
+            message = 'IP address changed from {0} to {1}'.format(self.current_ip, new_ip)
+            config.logger.info(message)
+            config.notifier.send_notification(message, 'IP Update')
             self.current_ip = new_ip
 
 if __name__ == '__main__':
@@ -64,6 +65,7 @@ if __name__ == '__main__':
             ipmonitor.restart()
         elif 'test' == sys.argv[1]:
             spawning_daemon = False
+            config.add_logging_stream_handler()
             ipmonitor.run()
         else:
             print "Unknown command"

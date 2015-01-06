@@ -24,4 +24,6 @@ def configure_logging():
     logging.getLogger('apscheduler.scheduler').setLevel(logging.CRITICAL)
     logging.getLogger('apscheduler.threadpool').setLevel(logging.CRITICAL)
     logger = logging.getLogger('ipmonitor')
-    logger.addHandler(logging.StreamHandler())
+
+def add_logging_stream_handler():
+	logger.addHandler(logging.StreamHandler())
