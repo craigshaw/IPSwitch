@@ -48,12 +48,17 @@ class IPSwitch(Daemon):
         if new_ip != 'Unknown' and new_ip != self.current_ip:
             message = 'IP address changed from {0} to {1}'.format(self.current_ip, new_ip)
             config.logger.info(message)
-            config.notifier.send_notification(message, 'IP Update')
+            self.send_notification(message, 'IP Update')
             self.current_ip = new_ip
+
+    def send_notification(self, message, event):
+        try:
+            config.notifier.send_notification(message, event)
+        except Exception as e:
+            config.logger.error('Failed to process notification: {0}'.format(e))
 
 if __name__ == '__main__':
     ipmonitor = IPSwitch(config.pid_file)
-    spawning_daemon = True
     config.configure_logging()
 
     if len(sys.argv) == 2:
@@ -64,15 +69,13 @@ if __name__ == '__main__':
         elif 'restart' == sys.argv[1]:
             ipmonitor.restart()
         elif 'test' == sys.argv[1]:
-            spawning_daemon = False
             config.add_logging_stream_handler()
             ipmonitor.run()
         else:
             print "Unknown command"
             sys.exit(2)
 
-        if spawning_daemon:
-            sys.exit(0)
+        sys.exit(0)
     else:
         print "usage: {0} start|stop|restart|test".format(sys.argv[0])
         sys.exit(2)
