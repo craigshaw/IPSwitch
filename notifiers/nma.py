@@ -5,18 +5,19 @@ NMA application key
 from urllib import urlencode
 import urllib2
 import logging
+import config
 
-notificationKey = "<your_key>"
 notificationRoot = "https://www.notifymyandroid.com/publicapi/notify"
 
 class NotifyMyAndroidNotifier(object):
-	def __init__(self, application):
+	def __init__(self, application, nma_key):
 		super(NotifyMyAndroidNotifier, self).__init__()
 		self.application = application
+		self.nma_key = nma_key
 
 	def send_notification(self, message, event):
-		data = urlencode([('apikey',notificationKey),('application',self.application),('event',event),('description',message)])    
+		data = urlencode([('apikey',self.nma_key),('application',self.application),('event',event),('description',message)])    
 		request = urllib2.Request(url=notificationRoot, data=data)
 		f = urllib2.urlopen(request)
-		return f.read()
-		#logger.debug('NMA Response: {0}'.format(response))
+		response = f.read()
+		config.logger.debug('NMA Response: {0}'.format(response))

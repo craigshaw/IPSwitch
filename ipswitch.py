@@ -70,6 +70,7 @@ if __name__ == '__main__':
             ipmonitor.restart()
         elif 'test' == sys.argv[1]:
             config.add_logging_stream_handler()
+            ipmonitor.send_notification('Starting up...', 'Bootstrap')
             ipmonitor.run()
         else:
             print "Unknown command"

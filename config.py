@@ -5,6 +5,10 @@ from providers.RealIPInfo import RealIPInfoProvider
 from notifiers.nma import NotifyMyAndroidNotifier
 import logging
 
+# General
+pid_file = '/var/run/ipmonitor.pid'
+application_name = 'IPSwitch'
+
 # Logger(s)
 logger = None
 
@@ -13,10 +17,8 @@ providers = {"whatsmyip.com": WMIPComProvider(),
 "realip.info": RealIPInfoProvider()}
 
 # Notifiers
-notifier = NotifyMyAndroidNotifier('IP Monitor')
-
-# General
-pid_file = '/var/run/ipmonitor.pid'
+nma_key = "<your_key>"
+notifier = NotifyMyAndroidNotifier(application_name, nma_key)
 
 def configure_logging():
     global logger
