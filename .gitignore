@@ -5,6 +5,9 @@ __pycache__/
 # Local log file
 log.txt
 
+# Local deployment script
+deploy.sh
+
 # C extensions
 *.so
 
