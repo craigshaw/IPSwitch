@@ -6,8 +6,9 @@ from notifiers.nma import NotifyMyAndroidNotifier
 import logging
 
 # General
-pid_file = '/var/run/ipmonitor.pid'
+pid_file = '/var/run/ipswitch.pid'
 application_name = 'IPSwitch'
+refresh_interval = 300 # seconds
 
 # Logger(s)
 logger = None
@@ -25,7 +26,7 @@ def configure_logging():
     logging.basicConfig(filename='log.txt', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logging.getLogger('apscheduler.scheduler').setLevel(logging.CRITICAL)
     logging.getLogger('apscheduler.threadpool').setLevel(logging.CRITICAL)
-    logger = logging.getLogger('ipmonitor')
+    logger = logging.getLogger('ipswitch')
 
 def add_logging_stream_handler():
 	logger.addHandler(logging.StreamHandler())

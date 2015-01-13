@@ -29,7 +29,7 @@ class IPSwitch(Daemon):
         config.logger.info('Current IP: {0}'.format(self.current_ip))
 
         # Start update timer
-        scheduler.add_interval_job(self.review_current_ip, seconds=300)
+        scheduler.add_interval_job(self.review_current_ip, seconds=config.refresh_interval)
         scheduler.start()
 
     def get_external_ip(self):
@@ -70,7 +70,6 @@ if __name__ == '__main__':
             ipmonitor.restart()
         elif 'test' == sys.argv[1]:
             config.add_logging_stream_handler()
-            ipmonitor.send_notification('Starting up...', 'Bootstrap')
             ipmonitor.run()
         else:
             print "Unknown command"
