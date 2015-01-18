@@ -3,6 +3,7 @@
 from providers.WMIPCom import WMIPComProvider
 from providers.RealIPInfo import RealIPInfoProvider
 from notifiers.nma import NotifyMyAndroidNotifier
+from providers.dns.godaddy import GodaddyDNSProvider
 import logging
 
 # General
@@ -14,11 +15,15 @@ refresh_interval = 300 # seconds
 logger = None
 
 # Providers
-providers = {"whatsmyip.com": WMIPComProvider(),
-"realip.info": RealIPInfoProvider()}
+providers = {'whatsmyip.com' : WMIPComProvider(),
+'realip.info': RealIPInfoProvider()}
+
+# DNS Providers
+go_daddy_creds = {'username' : '<your_username>', 'password' : '<your_password>'} # This needs externalising
+dns_providers = {'godaddy' : GodaddyDNSProvider(go_daddy_creds)}
 
 # Notifiers
-nma_key = "<your_key>"
+nma_key = '<your_key>' # This needs externalising
 notifier = NotifyMyAndroidNotifier(application_name, nma_key)
 
 def configure_logging():
