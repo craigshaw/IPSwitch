@@ -2,7 +2,7 @@ import urllib2
 import json
 
 class RealIPInfoProvider(object):
-	"""docstring for WMIPOrgProvider"""
+	""" IP resolution provider for realip.info """
 	def __init__(self):
 		super(RealIPInfoProvider, self).__init__()
 		
