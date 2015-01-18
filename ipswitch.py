@@ -2,11 +2,10 @@
 
 """ IPSwitch - Monitors external IP, detects changes and automates subsequent actions """
 
+import sys, time
+import config
 from apscheduler.scheduler import Scheduler
 from daemon.daemon import Daemon
-import sys
-import time
-import config
 
 scheduler = Scheduler()
 

@@ -1,4 +1,7 @@
-#!/usr/bin/env python
+"""
+ Class to create and manage dameon on *nix systems. Shamelessly lifted from Sander Marechal's superb reference code documented here,
+ http://www.jejik.com/articles/2007/02/a_simple_unix_linux_daemon_in_python/
+"""
 
 import sys, os, time, atexit
 from signal import SIGTERM 
