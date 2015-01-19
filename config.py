@@ -26,6 +26,9 @@ dns_providers = {'godaddy' : GodaddyDNSProvider(go_daddy_creds)}
 nma_key = '<your_key>' # This needs externalising
 notifier = NotifyMyAndroidNotifier(application_name, nma_key)
 
+# Managed domains
+managed_domains = ['yourdomain.com'] # This needs externalising
+
 def configure_logging():
     global logger
     logging.basicConfig(filename='log.txt', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')

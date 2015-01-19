@@ -22,7 +22,8 @@ class IPSwitch(Daemon):
 
     def bootstrap(self):
         # Get and store current IP
-        self.provider = config.providers["realip.info"]
+        self.provider = config.providers['realip.info']
+        self.dns_provider = config.dns_providers['godaddy']
         self.current_ip = self.provider.get_external_ip()
 
         config.logger.info('Current IP: {0}'.format(self.current_ip))
@@ -48,7 +49,16 @@ class IPSwitch(Daemon):
             message = 'IP address changed from {0} to {1}'.format(self.current_ip, new_ip)
             config.logger.info(message)
             self.send_notification(message, 'IP Update')
+            self.update_dns(new_ip)
             self.current_ip = new_ip
+
+    def update_dns(self, ip):
+        for domain in config.managed_domains:
+            try:
+                config.logger.debug('Updating DNS for {0}'.format(domain))
+                self.dns_provider.update_a_record(domain, ip)
+            except Exception as e:
+                config.logger.error('Error: {0}'.format(e))
 
     def send_notification(self, message, event):
         try:
