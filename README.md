@@ -4,24 +4,25 @@ Simple DNS management utility. Monitors for changes to IP address and updates DN
 
 Uses a simple provider model under the hood for both IP address resolution and DNS management. Currently supports the following,
 
-### IP Address Resolution
+##### IP Address Resolution
 whatsmyip.com
+
 realip.info
 
-### DNS Providers
+##### DNS Providers
 GoDaddy
 
-### Notification Providers
+##### Notification Providers
 NotifyMyAndroid.com
 
-Usage
------
+### Usage
 `./ipswitch start|stop|restart` 
 
-Dependencies
-------------
+### Dependencies
 apscheduler (version 2.1.2) `pip install apscheduler==2.1.2`
+
 Mechanize
+
 Beautiful Soup 4
 
 
