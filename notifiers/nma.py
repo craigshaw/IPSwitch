@@ -7,7 +7,7 @@ import urllib2
 import logging
 import config
 
-notificationRoot = "https://www.notifymyandroid.com/publicapi/notify"
+notificationRoot = 'https://www.notifymyandroid.com/publicapi/notify'
 
 class NotifyMyAndroidNotifier(object):
 	def __init__(self, application, nma_key):

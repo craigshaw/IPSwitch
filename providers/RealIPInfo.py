@@ -10,4 +10,4 @@ class RealIPInfoProvider(object):
 		req = urllib2.Request('http://www.realip.info/api/p/realip.php')
 		r = urllib2.urlopen(req)
 		data = json.loads(r.read())
-		return data["IP"]
+		return data['IP']

@@ -81,10 +81,10 @@ if __name__ == '__main__':
             config.add_logging_stream_handler()
             ipmonitor.run()
         else:
-            print "Unknown command"
+            print 'Unknown command'
             sys.exit(2)
 
         sys.exit(0)
     else:
-        print "usage: {0} start|stop|restart|test".format(sys.argv[0])
+        print 'usage: {0} start|stop|restart|test'.format(sys.argv[0])
         sys.exit(2)
