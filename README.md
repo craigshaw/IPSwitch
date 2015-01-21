@@ -14,6 +14,7 @@ GoDaddy
 
 ##### Notification Providers
 NotifyMyAndroid.com
+PushBullet
 
 ### Usage
 `./ipswitch start|stop|restart` 
