@@ -2,8 +2,8 @@
 
 from providers.WMIPCom import WMIPComProvider
 from providers.RealIPInfo import RealIPInfoProvider
-from notifiers.nma import NotifyMyAndroidNotifier
 from providers.dns.godaddy import GodaddyDNSProvider
+from notifiers import *
 import logging
 
 # General
@@ -24,7 +24,10 @@ dns_providers = {'godaddy' : GodaddyDNSProvider(go_daddy_creds)}
 
 # Notifiers
 nma_key = '<your_key>' # This needs externalising
-notifier = NotifyMyAndroidNotifier(application_name, nma_key)
+pushbullet_access_token = '<your_token>'
+
+notifier = pushbullet.PushBulletProvider(application_name, pushbullet_access_token)
+#notifier = NotifyMyAndroidNotifier(application_name, nma_key)
 
 # Managed domains
 managed_domains = ['yourdomain.com'] # This needs externalising
