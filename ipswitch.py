@@ -70,7 +70,7 @@ if __name__ == '__main__':
     ipmonitor = IPSwitch(config.pid_file)
     config.configure_logging()
 
-    if len(sys.argv) == 2:
+    if len(sys.argv) >= 2:
         if 'start' == sys.argv[1]:
             ipmonitor.start()
         elif 'stop' == sys.argv[1]:
@@ -80,6 +80,9 @@ if __name__ == '__main__':
         elif 'test' == sys.argv[1]:
             config.add_logging_stream_handler()
             ipmonitor.run()
+        elif 'update' == sys.argv[1]:
+            config.add_logging_stream_handler()
+            config.dns_providers['godaddy'].update_a_record(sys.argv[2], sys.argv[3])
         else:
             print 'Unknown command'
             sys.exit(2)
